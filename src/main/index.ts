@@ -30,8 +30,6 @@ const createWindow = (): void => {
   // Load your renderer
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:5173')
-    // Open DevTools in development
-    mainWindow.webContents.openDevTools()
   } else {
     mainWindow.loadFile('dist/renderer/index.html')
   }

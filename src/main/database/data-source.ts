@@ -8,12 +8,16 @@ const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV !==
 // Handle database path - use a fallback for testing outside Electron
 let dbPath: string
 try {
-  // Dynamic import to avoid require() style import
-  const electron = eval('require')('electron')
-  const { app } = electron
-  dbPath = isDev
-    ? path.join(__dirname, '../../database.sqlite')
-    : path.join(app.getPath('userData'), 'database.sqlite')
+  let electron, app
+  if (typeof require !== 'undefined') {
+    electron = require('electron')
+    app = electron.app
+    dbPath = isDev
+      ? path.join(__dirname, '../../database.sqlite')
+      : path.join(app.getPath('userData'), 'database.sqlite')
+  } else {
+    dbPath = path.join(__dirname, '../../database.sqlite')
+  }
 } catch {
   // Fallback for testing outside Electron
   dbPath = path.join(__dirname, '../../database.sqlite')
@@ -23,9 +27,16 @@ export const AppDataSource = new DataSource({
   type: 'sqlite',
   database: dbPath,
   synchronize: true, // Enable sync for development and testing
-  logging: isDev,
   logger: 'simple-console',
   entities: [User, Song],
-  migrations: [isDev ? 'src/migration/*.ts' : path.join(__dirname, '../migration/*.js')],
-  subscribers: [isDev ? 'src/subscriber/*.ts' : path.join(__dirname, '../subscriber/*.js')]
+  migrations: [
+    isDev
+      ? path.join(__dirname, '../../src/migration/*.ts')
+      : path.join(__dirname, '../migration/*.js')
+  ],
+  subscribers: [
+    isDev
+      ? path.join(__dirname, '../../src/subscriber/*.ts')
+      : path.join(__dirname, '../subscriber/*.js')
+  ]
 })

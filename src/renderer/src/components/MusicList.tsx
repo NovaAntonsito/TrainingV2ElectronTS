@@ -34,27 +34,27 @@ const MusicList: React.FC<MusicListProps> = ({ songs, onEdit, onDelete, isLoadin
     })
   }
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number): void => {
     setCurrentPage(page)
   }
 
-  const handleEdit = (song: Song) => {
+  const handleEdit = (song: Song): void => {
     onEdit(song)
   }
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (id: string): void => {
     if (window.confirm('¿Estás seguro de que quieres eliminar esta canción?')) {
       onDelete(id)
     }
   }
 
-  const renderPagination = () => {
+  const renderPagination = (): React.ReactNode => {
     if (totalPages <= 1) return null
 
-    const pages = []
+    const pages: React.ReactNode[] = []
     const maxVisiblePages = 5
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2))
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
+    const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
 
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1)
