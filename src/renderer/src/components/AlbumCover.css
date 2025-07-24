@@ -1,0 +1,612 @@
+/* Album Cover Container */
+.album-cover-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Size variants with responsive behavior */
+.album-cover-small {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  min-height: 54px;
+}
+
+.album-cover-medium {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.album-cover-large {
+  width: 200px;
+  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 8px;
+}
+
+/* Responsive size adjustments */
+@media (max-width: 768px) {
+  .album-cover-small {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+  }
+
+  .album-cover-medium {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+  }
+
+  .album-cover-large {
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-cover-large {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+  }
+}
+
+/* Image styles */
+.album-cover-image,
+.album-cover-placeholder-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Loading state with improved animations */
+.album-cover-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+  background-size: 8px 8px;
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0px;
+  animation: loading-background 2s linear infinite;
+}
+
+.loading-spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e9ecef;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+/* Size-specific spinner adjustments */
+.album-cover-small .loading-spinner-small {
+  width: 12px;
+  height: 12px;
+  border-width: 1.5px;
+}
+
+.album-cover-large .loading-spinner-small {
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
+}
+
+/* Loading background animation */
+@keyframes loading-background {
+  0% {
+    background-position:
+      0 0,
+      0 4px,
+      4px -4px,
+      -4px 0px;
+  }
+  100% {
+    background-position:
+      8px 8px,
+      8px 12px,
+      12px 4px,
+      4px 8px;
+  }
+}
+
+/* Enhanced fallback styles with gradient backgrounds */
+.album-cover-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Alternative gradient backgrounds for variety */
+.album-cover-fallback:nth-child(2n) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.album-cover-fallback:nth-child(3n) {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.album-cover-fallback:nth-child(4n) {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.album-cover-fallback:nth-child(5n) {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Subtle pattern overlay */
+.album-cover-fallback::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  background-size: 12px 12px;
+  opacity: 0.3;
+}
+
+.album-cover-small .album-cover-fallback {
+  padding: 2px;
+}
+
+.album-cover-large .album-cover-fallback {
+  padding: 16px;
+}
+
+.music-icon {
+  font-size: 20px;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.album-cover-small .music-icon {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.album-cover-large .music-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.album-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.album-cover-small .album-info {
+  display: none;
+}
+
+.album-name {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.album-cover-large .album-name {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.artist-name {
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.85;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.album-cover-large .artist-name {
+  font-size: 12px;
+}
+
+/* Responsive text sizing */
+@media (max-width: 768px) {
+  .album-name {
+    font-size: 9px;
+  }
+
+  .artist-name {
+    font-size: 8px;
+  }
+
+  .album-cover-large .album-name {
+    font-size: 12px;
+  }
+
+  .album-cover-large .artist-name {
+    font-size: 10px;
+  }
+
+  .album-cover-large .music-icon {
+    font-size: 36px;
+  }
+}
+
+/* Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced hover effects and interactive states */
+.album-cover-container.interactive {
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.album-cover-container.interactive:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.album-cover-container.interactive:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus states for keyboard navigation */
+.album-cover-container:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Hover effects for images */
+.album-cover-container:hover .album-cover-image {
+  filter: brightness(1.05) contrast(1.02);
+}
+
+.album-cover-container:hover .album-cover-fallback {
+  background-size: 110% 110%;
+  transition: background-size 0.3s ease;
+}
+
+/* Size-specific hover adjustments */
+.album-cover-small.interactive:hover {
+  transform: translateY(-1px) scale(1.05);
+}
+
+.album-cover-large.interactive:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* Enhanced accessibility support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner-small,
+  .loading-background {
+    animation: none;
+  }
+
+  .album-cover-container,
+  .album-cover-container.interactive {
+    transition: none;
+  }
+
+  .album-cover-container.interactive:hover,
+  .album-cover-container:hover .album-cover-image,
+  .album-cover-container:hover .album-cover-fallback {
+    transform: none;
+    filter: none;
+    background-size: 100% 100%;
+  }
+
+  /* Provide alternative focus indication when motion is reduced */
+  .album-cover-container.interactive:hover {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+  }
+}
+
+/* High contrast mode with improved visibility */
+@media (prefers-contrast: high) {
+  .album-cover-container {
+    border: 2px solid #000;
+    background: #fff;
+  }
+
+  .album-cover-fallback {
+    background: #000 !important;
+    color: #fff;
+  }
+
+  .album-cover-fallback::before {
+    display: none;
+  }
+
+  .loading-spinner-small {
+    border-color: #000;
+    border-top-color: #fff;
+  }
+
+  .album-cover-loading {
+    background: #fff;
+    border: 1px solid #000;
+  }
+}
+
+/* Enhanced dark mode support */
+@media (prefers-color-scheme: dark) {
+  .album-cover-container {
+    background: #2d3748;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a5568;
+  }
+
+  .album-cover-loading {
+    background:
+      linear-gradient(45deg, #2d3748 25%, transparent 25%),
+      linear-gradient(-45deg, #2d3748 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #2d3748 75%),
+      linear-gradient(-45deg, transparent 75%, #2d3748 75%);
+  }
+
+  .loading-spinner-small {
+    border-color: #4a5568;
+    border-top-color: #63b3ed;
+  }
+
+  .album-cover-container.interactive:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Screen reader support */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Loading state announcement for screen readers */
+.album-cover-loading::after {
+  content: 'Loading album cover';
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Error state announcement for screen readers */
+.album-cover-fallback::after {
+  content: 'Album cover unavailable, showing placeholder';
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+/* Perf
+ormance optimizations */
+.album-cover-image,
+.album-cover-placeholder-image {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent layout shift during loading */
+.album-cover-container {
+  contain: layout style;
+}
+
+/* Additional responsive breakpoints */
+@media (max-width: 320px) {
+  .album-cover-small {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .album-cover-medium {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .album-cover-large {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+  }
+
+  .album-cover-large .music-icon {
+    font-size: 28px;
+  }
+
+  .album-cover-large .album-name {
+    font-size: 10px;
+  }
+
+  .album-cover-large .artist-name {
+    font-size: 9px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .album-cover-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .album-cover-loading {
+    background: #f0f0f0;
+  }
+
+  .loading-spinner-small {
+    display: none;
+  }
+
+  .album-cover-loading::before {
+    content: 'Loading...';
+    color: #000;
+    font-size: 12px;
+  }
+
+  .album-cover-fallback {
+    background: #e0e0e0 !important;
+    color: #000 !important;
+  }
+}
+
+/* Container queries for more precise responsive behavior */
+@container (max-width: 50px) {
+  .album-info {
+    display: none;
+  }
+
+  .music-icon {
+    font-size: 14px !important;
+  }
+}
+
+@container (min-width: 150px) {
+  .album-name {
+    font-size: 12px;
+  }
+
+  .artist-name {
+    font-size: 11px;
+  }
+}
+
+/* Utility classes for specific use cases */
+.album-cover-rounded {
+  border-radius: 50% !important;
+}
+
+.album-cover-square {
+  border-radius: 0 !important;
+}
+
+.album-cover-no-shadow {
+  box-shadow: none !important;
+}
+
+.album-cover-bordered {
+  border: 2px solid #e9ecef;
+}
+
+/* Animation for successful image load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.album-cover-image {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Ensure proper aspect ratio maintenance */
+.album-cover-container {
+  aspect-ratio: 1 / 1;
+}
+
+/* Improved loading state for better UX */
+.album-cover-loading {
+  position: relative;
+}
+
+.album-cover-loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #007bff, transparent);
+  transform: translate(-50%, -50%);
+  animation: loading-bar 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translate(-150%, -50%);
+  }
+  100% {
+    transform: translate(150%, -50%);
+  }
+}
+
+/* Hide loading bar when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .album-cover-loading::before {
+    display: none;
+  }
+}

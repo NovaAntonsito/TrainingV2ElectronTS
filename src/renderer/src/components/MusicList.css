@@ -1,0 +1,544 @@
+/* Music List Container */
+.music-list {
+  width: 100%;
+}
+
+/* Loading State */
+.music-list-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.music-list-loading .loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+.music-list-loading p {
+  color: #6c757d;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Empty State */
+.music-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.music-list-empty .empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.music-list-empty h3 {
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.music-list-empty p {
+  color: #6c757d;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* List Header */
+.music-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.list-info h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.list-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.view-toggle {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.view-button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.view-button:hover {
+  background: #e9ecef;
+}
+
+.view-button.active {
+  background: #007bff;
+  color: white;
+}
+
+/* Table View */
+.music-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 24px;
+}
+
+.music-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.music-table th {
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px 12px;
+  text-align: left;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.music-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+}
+
+.music-row:hover {
+  background: #f8f9fa;
+}
+
+/* Table Cells */
+.cover-cell {
+  width: 70px;
+  text-align: center;
+  padding: 8px;
+  vertical-align: middle;
+}
+
+.cover-cell .album-cover-container {
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.title-cell {
+  min-width: 200px;
+}
+
+.song-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.artist-cell,
+.album-cell {
+  min-width: 150px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.duration-cell {
+  width: 80px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #495057;
+}
+
+.preview-cell {
+  width: 200px;
+}
+
+.audio-preview {
+  width: 180px;
+  height: 32px;
+}
+
+.no-preview {
+  color: #6c757d;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.date-cell {
+  width: 100px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.actions-cell {
+  width: 100px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button.edit:hover {
+  background: #e3f2fd;
+}
+
+.action-button.delete:hover {
+  background: #ffebee;
+}
+
+/* Grid View */
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.music-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.music-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-cover {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-album-cover-component {
+  width: 100%;
+  height: 100%;
+}
+
+.card-album-cover-component .album-cover-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.music-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.card-action-button {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-action-button:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-artist {
+  font-size: 14px;
+  color: #007bff;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+}
+
+.card-album {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0 0 12px 0;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.card-duration {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.card-preview {
+  margin-top: 12px;
+}
+
+.card-audio {
+  width: 100%;
+  height: 32px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e9ecef;
+}
+
+.pagination-info {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination-button {
+  background: white;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button:hover:not(.disabled) {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.pagination-button.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.pagination-button.disabled {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .music-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .music-table-container {
+    font-size: 14px;
+  }
+
+  .music-table th,
+  .music-table td {
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .music-list-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .list-controls {
+    justify-content: center;
+  }
+
+  .music-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .music-table-container {
+    font-size: 12px;
+  }
+
+  .music-table th,
+  .music-table td {
+    padding: 8px 6px;
+  }
+
+  .audio-preview {
+    width: 140px;
+    height: 28px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .music-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .music-card {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .card-cover {
+    height: 160px;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  /* Hide table view on very small screens, force grid */
+  .view-toggle {
+    display: none;
+  }
+
+  .music-table-container {
+    display: none;
+  }
+
+  .music-grid {
+    display: grid !important;
+  }
+}
+
+/* Animations */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .music-card,
+  .action-button,
+  .card-action-button,
+  .pagination-button {
+    transition: none;
+  }
+
+  .music-card:hover {
+    transform: none;
+  }
+
+  .card-action-button:hover {
+    transform: none;
+  }
+
+  .loading-spinner {
+    animation: none;
+  }
+}
